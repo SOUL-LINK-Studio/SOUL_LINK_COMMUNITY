@@ -1,0 +1,42 @@
+name: "💡 Suggestion d'idée"
+description: "Proposer une idée pour améliorer SOUL LINK."
+title: "[SUGGESTION] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de contribuer à SOUL LINK !
+        Chaque idée peut aider le projet à évoluer.
+
+  - type: textarea
+    id: idea
+    attributes:
+      label: "💡 Ton idée"
+      description: "Décris ton idée le plus clairement possible."
+      placeholder: "J'aimerais proposer..."
+    validations:
+      required: true
+
+  - type: dropdown
+    id: category
+    attributes:
+      label: "🎮 Domaine concerné"
+      options:
+        - Monde et exploration
+        - Combat et magie
+        - PNJ et intelligence artificielle
+        - Professions et économie
+        - VR et immersion
+        - Vie quotidienne
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: "🌍 Détails supplémentaires"
+      description: "Exemples, explications ou références éventuelles."
+      placeholder: "Voici quelques précisions..."
+    validations:
+      required: false
