@@ -2,6 +2,7 @@
 name: SOUL LINK - Discord announcements
 
 on:
+  workflow_dispatch:
   discussion:
     types: [created]
   release:
