@@ -17,9 +17,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Send announcement to Discord
+      - name: Prepare Discord message
+        id: message
         env:
-          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
           EVENT_NAME: ${{ github.event_name }}
           DISCUSSION_TITLE: ${{ github.event.discussion.title }}
           DISCUSSION_URL: ${{ github.event.discussion.html_url }}
@@ -27,22 +27,30 @@ jobs:
           RELEASE_TAG: ${{ github.event.release.tag_name }}
           RELEASE_URL: ${{ github.event.release.html_url }}
         run: |
-          if [ "$EVENT_NAME" = "discussion" ]; then
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            MESSAGE="🧪 Test de connexion réussi !
+          SOUL LINK est connecté à Discord."
+          elif [ "$EVENT_NAME" = "discussion" ]; then
             MESSAGE="💬 Nouvelle discussion SOUL LINK !
-
           ${DISCUSSION_TITLE}
-
-          Rejoins la conversation :
           ${DISCUSSION_URL}"
           else
             MESSAGE="🚀 Nouvelle version de SOUL LINK !
-
           ${RELEASE_NAME:-$RELEASE_TAG}
-
-          Découvrir la version :
           ${RELEASE_URL}"
           fi
 
+          {
+            echo "content<<EOF"
+            echo "$MESSAGE"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Send message to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          MESSAGE: ${{ steps.message.outputs.content }}
+        run: |
           jq -n --arg content "$MESSAGE" \
             '{content: $content}' |
             curl --fail --silent --show-error \
