@@ -1,0 +1,52 @@
+name: "🐛 Signaler un bug"
+description: "Signaler un problème rencontré dans SOUL LINK."
+title: "[BUG] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Merci de nous aider à améliorer SOUL LINK.
+        Décris le problème rencontré avec autant de précision que possible.
+
+  - type: textarea
+    id: description
+    attributes:
+      label: "🐛 Description du problème"
+      description: "Que s'est-il passé ?"
+      placeholder: "J'ai rencontré un problème lorsque..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: "🔁 Comment reproduire le problème ?"
+      description: "Quelles actions permettent de retrouver le bug ?"
+      placeholder: |
+        1. J'ai ouvert...
+        2. J'ai cliqué...
+        3. Le problème est apparu...
+    validations:
+      required: false
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: "💻 Plateforme"
+      options:
+        - Windows PC
+        - Meta Quest 2
+        - Autre casque VR
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: "📸 Capture d'écran ou informations complémentaires"
+      description: "Tu peux joindre une capture après avoir créé le signalement."
+    validations:
+      required: false
