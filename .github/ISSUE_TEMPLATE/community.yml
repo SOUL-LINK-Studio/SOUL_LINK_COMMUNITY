@@ -1,0 +1,33 @@
+name: "💙 Message à SOUL LINK"
+description: "Partager un encouragement, un avis ou un message à la communauté."
+title: "[COMMUNAUTÉ] "
+labels:
+  - community
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Bienvenue dans la communauté SOUL LINK !
+        Chaque message compte et nous aide à faire grandir le projet.
+
+  - type: dropdown
+    id: message_type
+    attributes:
+      label: "Quel type de message souhaites-tu partager ?"
+      options:
+        - Encouragement
+        - Avis sur le projet
+        - Ce que j'attends de SOUL LINK
+        - Message à la communauté
+        - Autre
+    validations:
+      required: true
+
+  - type: textarea
+    id: message
+    attributes:
+      label: "Ton message"
+      description: "Tu peux écrire librement."
+      placeholder: "Je souhaite soutenir SOUL LINK parce que..."
+    validations:
+      required: true
