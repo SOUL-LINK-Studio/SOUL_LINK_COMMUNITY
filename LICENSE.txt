@@ -1,0 +1,25 @@
+SOUL LINK — PROPRIETARY LICENSE
+
+Copyright © 2026 SOUL LINK Studio. All rights reserved.
+
+SOUL LINK is an independent game project.
+
+All original materials published by SOUL LINK Studio, including original game designs, characters, artwork, documentation, logos, concepts expressed in a protected form, and original software, are protected by applicable intellectual property laws.
+
+Unless expressly authorized in writing by the rights holder, no permission is granted to:
+
+- Copy or redistribute original project materials.
+- Modify or create derivative works from protected materials.
+- Reproduce original characters, artwork, logos or designs.
+- Use protected materials for commercial purposes.
+- Claim ownership of original SOUL LINK materials.
+
+Public access to this repository does not grant permission to reuse its protected contents.
+
+Third-party materials remain subject to their respective licenses and ownership rights.
+
+All rights not expressly granted are reserved.
+
+Project: SOUL LINK  
+Publisher identity: SOUL LINK Studio  
+Year: 2026
