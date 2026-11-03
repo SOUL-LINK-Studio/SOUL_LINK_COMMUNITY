@@ -1,0 +1,50 @@
+
+name: SOUL LINK - Discord announcements
+
+on:
+  discussion:
+    types: [created]
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  discussions: read
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Send announcement to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          EVENT_NAME: ${{ github.event_name }}
+          DISCUSSION_TITLE: ${{ github.event.discussion.title }}
+          DISCUSSION_URL: ${{ github.event.discussion.html_url }}
+          RELEASE_NAME: ${{ github.event.release.name }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
+        run: |
+          if [ "$EVENT_NAME" = "discussion" ]; then
+            MESSAGE="💬 Nouvelle discussion SOUL LINK !
+
+          ${DISCUSSION_TITLE}
+
+          Rejoins la conversation :
+          ${DISCUSSION_URL}"
+          else
+            MESSAGE="🚀 Nouvelle version de SOUL LINK !
+
+          ${RELEASE_NAME:-$RELEASE_TAG}
+
+          Découvrir la version :
+          ${RELEASE_URL}"
+          fi
+
+          jq -n --arg content "$MESSAGE" \
+            '{content: $content}' |
+            curl --fail --silent --show-error \
+              -H "Content-Type: application/json" \
+              -d @- \
+              "$WEBHOOK_URL"
